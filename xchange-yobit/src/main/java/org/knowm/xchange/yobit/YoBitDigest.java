@@ -18,11 +18,14 @@ public class YoBitDigest extends BaseParamsDigest {
   }
 
   public static YoBitDigest createInstance(String secretKeyBase64, String apiKey) {
-    try {
-      return new YoBitDigest(secretKeyBase64, apiKey);
-    } catch (Exception e) {
-      throw new IllegalStateException("cannot create digest", e);
+     if (secretKeyBase64 != null) {
+        try {
+          return new YoBitDigest(secretKeyBase64, apiKey);
+        } catch (Exception e) {
+          throw new IllegalStateException("cannot create digest", e);
+        }
     }
+    return null;
   }
 
   @Override
